@@ -1,0 +1,92 @@
+<p>logincomponent works!</p>
+<form [formGroup]="registerForm">
+    <div class="container">
+        <div class="mr3">
+            <p>first Name </p>
+            <input type="text" class="formControl" placeholder="firstName" formControlName="firstName">
+            <div class="color_red" *ngIf="isFieldValid('firstName') && submittedForm">
+                <span *ngIf="registerForm.hasError('required', ['firstName'])">First name is required</span>
+            </div>
+        </div>
+        <div class="mr3">
+            <p>lastName </p>
+            <input type="text" classformControl placeholder="lastName" formControlName="lastName">
+            <div class="color_red" *ngIf="isFieldValid('lastName') && submittedForm">
+                <span *ngIf="registerForm.hasError('required', ['lastName'])">Last name is required</span>
+            </div>
+            <div>
+                <div>
+                    <h3>Gender</h3>
+                    <input type="radio" class="formControl" name="Gender" id="m01" value="male"
+                        formControlName="Gender">male
+                </div>
+                <div>
+                    <input type="radio" class="formControl" name="Gender" id="f01" value="female"
+                        formControlName="Gender">female
+
+                </div>
+                <div class="color_red" *ngIf="isFieldValid('Gender') && submittedForm">
+                    <span *ngIf="registerForm.hasError('required', ['Gender'])">Gender is required</span>
+                </div>
+                <div class="mr3">
+                    <p>Email </p>
+                    <input type="email" class="formControl" placeholder="Email" formControlName="email">
+                    <div class="color_red" *ngIf="isFieldValid('email') && submittedForm">
+                        <span *ngIf="registerForm.hasError('required', ['email'])">Email is required</span>
+                    </div>
+                    <div class="mr3">
+                        <p>password </p>
+                        <input type="password" class="formControl" placeholder="password" formControlName="password">
+                        <div class="color_red" *ngIf="isFieldValid('password') && submittedForm">
+                            <span *ngIf="registerForm.hasError('required', ['password'])">password is required</span>
+                        </div>
+                    </div>
+                    <div class="mr3">
+                        <p>Conform password </p>
+                        <input type="password" class="formControl" placeholder="conformPassword"
+                            formControlName="confirmPassword">
+
+                        <div class="color_red" *ngIf="isFieldValid('confirmPassword') && submittedForm">
+                            <span *ngIf="registerForm.hasError('required', ['confirmPassword'])">conform password is
+                                required</span>
+                        </div>
+                        <div class="" style="display: inline-flex;">
+                            <div>
+                                <button (click)='register()'>submit</button>
+                            </div>
+                            <div>
+                                <button (click)='reset()'>cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>password</th>
+                <th>Confirm password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let x of userdata;let i=index">
+                    <td>{{x.firstName}}</td>
+
+                    <td>{{x.lastName}}</td>
+                    <td>{{x.Gender}}</td>
+                    <td>{{x.email}}</td>
+                    <td>{{x.password}}</td>
+                    <td>{{x.confirmPassword}}</td>
+                    <td><button type="button" (click)="Edit(x, i)">Edit</button></td>
+          <td><button type="button" (click)="Delete(i)">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
